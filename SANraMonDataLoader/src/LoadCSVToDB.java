@@ -70,8 +70,9 @@ public class LoadCSVToDB {
 
   
   private void loadConfigurationData() throws IOException, SQLException
-  {
-	  String csvFilename = "./../datafiles/Sample_Org_Data_1.csv";
+  { 
+	  String rootDirectory = System.getProperty("user.dir");
+	  String csvFilename = rootDirectory + "/datafiles/Sample_Org_Data_1.csv";
       CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
       String[] row = null;
       while((row = csvReader.readNext()) != null) {
