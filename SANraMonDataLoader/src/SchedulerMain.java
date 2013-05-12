@@ -12,13 +12,13 @@ import java.util.TimerTask;
  *
  * @author Rohit Erande
  */
-public class TestClass {
+public class SchedulerMain {
     
 
 
  public static void main(String[] args) {
 
-                         TimerTask task = new TimerSanRaMon("thread4");
+          TimerTask task = new TimerSanRaMon("thread4");
 		  Timer timer = new Timer();
 		  timer.scheduleAtFixedRate(task,0, 15*60*1000);
     

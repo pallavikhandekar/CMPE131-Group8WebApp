@@ -1,5 +1,4 @@
 
-import java.util.Timer;
 import java.util.TimerTask;
 
 /*
@@ -25,15 +24,22 @@ public class TimerSanRaMon extends TimerTask{
        threadname=tname;
    }
    
-   private static void TimerSanRaMon()
+   private static void triggerDataLoader() throws Exception
    {
        System.out.println("called");
-    // call here the code that does the insertion operation  
+       //Trigger the Data Load Operation
+       LoadCSVToDB rcsvldb = new LoadCSVToDB();
+       rcsvldb.readDataBase();
    }
     
 
     @Override
     public void run() {
-       TimerSanRaMon();
+    	try {
+			triggerDataLoader();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

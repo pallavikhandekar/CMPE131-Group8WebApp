@@ -9,8 +9,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import au.com.bytecode.opencsv.CSVReader;
 
-//import java.util.Date;
 
+/***
+ * Reads CSV and Loads MYSQL database.
+ * PRE_REQ: RUN SCRIPT "DATABASE_SCRIPT.sql" on your local mysql instance.
+ * @author Sakshi and Pallavi
+ *
+ */
 public class LoadCSVToDB {
   private Connection connect = null;
   private Statement statement = null;
@@ -63,6 +68,7 @@ public class LoadCSVToDB {
     }
   }
 
+  
   private void loadConfigurationData() throws IOException, SQLException
   {
 	  String csvFilename = "./../datafiles/Sample_Org_Data_1.csv";
@@ -92,7 +98,8 @@ public class LoadCSVToDB {
   
   private void loadMonitoringData() throws IOException, SQLException
   {
-	  String csvFilename = "./../datafiles/SANData-111485.csv";
+	  String rootDirectory = System.getProperty("user.dir");
+	  String csvFilename = rootDirectory + "/datafiles/SANData-111485.csv";
       CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
       String[] row = null;
       while((row = csvReader.readNext()) != null) {
@@ -100,7 +107,7 @@ public class LoadCSVToDB {
    
           // PreparedStatements can use variables and are more efficient
           // It assumes a table of name sanramon_users having following columns:
-          //  "IO_TYPE","IO_CHANNEL", "LUN", "TIMESTAMP", "IP_ADDR", "NO_OF_DATABLOCKS","DURATION" ,"IOPS"
+          //  "IO_TYPE","IO_CHANNEL", "LUN", "MON_TIMESTAMP", "IP_ADDR", "NO_OF_DATABLOCKS","DURATION" ,"IOPS"
           preparedStatement = connect.prepareStatement("insert into sanramon.monitor_data values (?, ?, ?, ?, ? , ?, ?,?)");
       
           preparedStatement.setString(1, row[0]);
