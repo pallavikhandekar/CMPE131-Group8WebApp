@@ -1,4 +1,6 @@
+
 import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -30,32 +32,9 @@ public class LoadCSVToDB {
 
       // Statements allow to issue SQL queries to the database
       statement = connect.createStatement();
-      
      
-      String csvFilename = "/my/Sample_Org_Data_1.csv";
-      CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
-      String[] row = null;
-      while((row = csvReader.readNext()) != null) {
-      
-   
-          // PreparedStatements can use variables and are more efficient
-          // It assumes a table of name sanramon_users having following columns:
-          // (Company, Department, UserID, User,IPAddress, LUN, IOChannel);
-          preparedStatement = connect.prepareStatement("insert into sanramon.sanramon_users values (?, ?, ?, ?, ? , ?, ?)");
-      
-          preparedStatement.setString(1, row[0]);
-          preparedStatement.setString(2, row[1]);
-          preparedStatement.setString(3, row[2]);
-          preparedStatement.setString(4, row[3]);
-          preparedStatement.setString(5, row[4]);
-          preparedStatement.setString(6, row[5]);
-          preparedStatement.setString(7, row[6]);
-          preparedStatement.executeUpdate();
-      }
-       
-      csvReader.close();
-   
-     
+      loadConfigurationData();
+      loadMonitoringData();
       
     } catch (Exception e) {
       throw e;
@@ -84,4 +63,58 @@ public class LoadCSVToDB {
     }
   }
 
+  private void loadConfigurationData() throws IOException, SQLException
+  {
+	  String csvFilename = "./../datafiles/Sample_Org_Data_1.csv";
+      CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
+      String[] row = null;
+      while((row = csvReader.readNext()) != null) {
+      
+   
+          // PreparedStatements can use variables and are more efficient
+          // It assumes a table of name sanramon_users having following columns:
+          // (Company, Department, UserID, User,IPAddress, LUN, IOChannel);
+          preparedStatement = connect.prepareStatement("insert into sanramon.sanramon_users values (?, ?, ?, ?, ? , ?, ?)");
+      
+          preparedStatement.setString(1, row[0]);
+          preparedStatement.setString(2, row[1]);
+          preparedStatement.setString(3, row[2]);
+          preparedStatement.setString(4, row[3]);
+          preparedStatement.setString(5, row[4]);
+          preparedStatement.setString(6, row[5]);
+          preparedStatement.setString(7, row[6]);
+          preparedStatement.executeUpdate();
+      }
+       
+      csvReader.close();
+   
+  }
+  
+  private void loadMonitoringData() throws IOException, SQLException
+  {
+	  String csvFilename = "./../datafiles/SANData-111485.csv.csv";
+      CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
+      String[] row = null;
+      while((row = csvReader.readNext()) != null) {
+      
+   
+          // PreparedStatements can use variables and are more efficient
+          // It assumes a table of name sanramon_users having following columns:
+          //  "IO_TYPE","IO_CHANNEL", "LUN", "TIMESTAMP", "IP_ADDR", "NO_OF_DATABLOCKS","DURATION" ,"IOPS"
+          preparedStatement = connect.prepareStatement("insert into sanramon.monitor_data values (?, ?, ?, ?, ? , ?, ?,?)");
+      
+          preparedStatement.setString(1, row[0]);
+          preparedStatement.setString(2, row[1]);
+          preparedStatement.setString(3, row[2]);
+          preparedStatement.setString(4, row[3]);
+          preparedStatement.setString(5, row[4]);
+          preparedStatement.setString(6, row[5]);
+          preparedStatement.setString(7, row[6]);
+          preparedStatement.setString(8, row[7]);
+          preparedStatement.executeUpdate();
+      }
+       
+      csvReader.close();
+   
+  }
 } 
