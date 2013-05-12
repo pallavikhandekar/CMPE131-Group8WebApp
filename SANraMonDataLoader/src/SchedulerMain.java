@@ -20,7 +20,7 @@ public class SchedulerMain {
 
           TimerTask task = new TimerSanRaMon("thread4");
 		  Timer timer = new Timer();
-		  timer.scheduleAtFixedRate(task,0, 15*60*1000);
+		  timer.scheduleAtFixedRate(task,0, 12*60*1000);
     
 }
  
