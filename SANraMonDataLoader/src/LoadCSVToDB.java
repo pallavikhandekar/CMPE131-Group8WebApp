@@ -92,7 +92,7 @@ public class LoadCSVToDB {
   
   private void loadMonitoringData() throws IOException, SQLException
   {
-	  String csvFilename = "./../datafiles/SANData-111485.csv.csv";
+	  String csvFilename = "./../datafiles/SANData-111485.csv";
       CSVReader csvReader = new CSVReader(new FileReader(csvFilename));
       String[] row = null;
       while((row = csvReader.readNext()) != null) {
