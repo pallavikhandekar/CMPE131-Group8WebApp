@@ -1,6 +1,6 @@
 /***
  * Defines Configuration Data object
- * @author palloabhi
+ * @author Pallavi
  *
  */
 public class ConfigurationData {
