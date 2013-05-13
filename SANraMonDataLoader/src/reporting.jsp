@@ -6,22 +6,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome to SANraMon</title>
+<!-- Test java script code -->
+<script > 
+function fo() {
+	alert("hi");	
+	alert("it happend again");
+	document.write("hi");
+}
 
+function bar() {
+	document.write("how fun");
+}
+</script>
 </head>
 <body align="center">
 
 <h1>SANraMon, where reporting and monitoring is a breeze</h1>
 
-<button onclick="">Generate Report</button>
-<button onclick="">Monitor DataSwift</button>
+<input id="gen_but" type="button" onclick="fo()" value="Generate Report" />
+<input id="monData" type="button" onclick="bar()" value="Monitor Data" />
 
 <%
 	reportData rData = new reportData();
-	String[] ar;//arbitrarily made to call main function properly
-	rData.main(ar);//for some reason, the reportData class will not run without main function
-%>
+	String[] ar; //arbitrary variable used to call main
+	rData.main(ar); //calls main function to display data (time stamp and iops)
+ %>
 
 </body>
 </html>
