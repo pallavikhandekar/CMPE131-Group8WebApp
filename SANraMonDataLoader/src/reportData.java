@@ -11,7 +11,8 @@ public class reportData extends MonitoringData {
 	 * Author: Rajwinder Ruprai
 	 * @throws Exception 
 	 */
-	public void accessData() throws Exception {
+	
+	public static void main (String[] args) throws Exception {
 		ArrayList<String> tStamp = new ArrayList<String>();
 		ArrayList<String> iops = new ArrayList<String>();
 		try {
@@ -30,9 +31,15 @@ public class reportData extends MonitoringData {
 			 */
 			
 			while (rs.next()) {
-				tStamp.add(rs.getString("MON_TIMESTAMP"));//add the appropriate time stamp
-				iops.add(rs.getString("IOPS")); //also add the corresponding iops for that time stamp				
-				i++;
+				//add the appropriate time stamp
+				tStamp.add(rs.getString("MON_TIMESTAMP"));
+				
+				//also add the corresponding iops for that time stamp
+				iops.add(rs.getString("IOPS")); 	
+				
+				//i am printing to console so everyone can see the data it pulls matches csv
+				System.out.print("\n" + tStamp.get(i) + "\t" + iops.get(i) + "\n"); 
+				i++; //increment index
 			}//end while
 		}//end try
 		catch(Exception ex) {

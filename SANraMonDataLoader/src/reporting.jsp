@@ -19,7 +19,8 @@
 
 <%
 	reportData rData = new reportData();
-	rData.accessData();
+	String[] ar;//arbitrarily made to call main function properly
+	rData.main(ar);//for some reason, the reportData class will not run without main function
 %>
 
 </body>
