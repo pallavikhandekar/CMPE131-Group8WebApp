@@ -17,5 +17,10 @@
 <button onclick="">Generate Report</button>
 <button onclick="">Monitor DataSwift</button>
 
+<%
+	reportData rData = new reportData();
+	rData.accessData();
+%>
+
 </body>
 </html>
